@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  namespace: default
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: hello
+
+  template:
+    metadata:
+      labels:
+        app: hello
+
+    spec:
+      containers:
+        - name: hello-container
+          image: student-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
